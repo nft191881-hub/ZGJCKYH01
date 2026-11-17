@@ -1,0 +1,1118 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#003366">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="进出口金融演示">
+<meta name="format-detection" content="telephone=no">
+<title>进出口金融服务 - 移动端演示原型</title>
+
+<style>
+:root {
+  --blue:#003366;
+  --blue2:#07518c;
+  --light:#edf3f9;
+  --gold:#d8bd83;
+  --text:#25364a;
+  --muted:#8492a2;
+  --safe-bottom:env(safe-area-inset-bottom, 0px);
+  --safe-top:env(safe-area-inset-top, 0px);
+}
+
+* {
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body {
+  margin:0;
+  width:100%;
+  min-height:100%;
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",
+  "Microsoft YaHei",Arial,sans-serif;
+  background:#f2f4f7;
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+body {
+  padding-bottom:calc(76px + var(--safe-bottom));
+}
+
+button {
+  font:inherit;
+  cursor:pointer;
+}
+
+button:active {
+  transform:scale(.97);
+}
+
+.demo-banner {
+  background:#fff3dc;
+  color:#805c24;
+  font-size:10px;
+  text-align:center;
+  padding:6px 4px;
+  letter-spacing:.5px;
+}
+
+.header {
+  padding:calc(12px + var(--safe-top)) 18px 20px;
+  background:linear-gradient(130deg,#00264f,#064a80);
+  color:white;
+  border-radius:0 0 20px 20px;
+}
+
+.header-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.brand-mark {
+  width:37px;
+  height:37px;
+  border:1px solid rgba(255,255,255,.55);
+  border-radius:8px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:serif;
+  font-size:20px;
+  color:#e5d2a5;
+}
+
+.brand-name {
+  font-size:16px;
+  font-weight:650;
+  letter-spacing:1px;
+}
+
+.brand-sub {
+  font-size:9px;
+  opacity:.7;
+  margin-top:3px;
+  letter-spacing:1px;
+}
+
+.header-actions {
+  display:flex;
+  gap:17px;
+}
+
+.header-icon {
+  position:relative;
+  background:transparent;
+  border:0;
+  color:white;
+  font-size:21px;
+  padding:5px;
+}
+
+.red-dot {
+  position:absolute;
+  top:2px;
+  right:1px;
+  width:7px;
+  height:7px;
+  background:#e45c52;
+  border-radius:50%;
+}
+
+.greeting {
+  margin-top:24px;
+  font-size:14px;
+  opacity:.85;
+}
+
+.header-title {
+  font-size:21px;
+  font-weight:600;
+  margin-top:7px;
+}
+
+.header-desc {
+  margin-top:7px;
+  font-size:11px;
+  opacity:.7;
+}
+
+main {
+  padding:0 14px;
+  margin-top:-1px;
+}
+
+.asset-card {
+  margin-top:-1px;
+  padding:19px 17px;
+  background:linear-gradient(120deg,#fff,#f8fafc);
+  border-radius:13px;
+  box-shadow:0 3px 15px rgba(0,30,70,.07);
+  position:relative;
+}
+
+.asset-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.asset-label {
+  font-size:12px;
+  color:#677789;
+}
+
+.account-type {
+  color:#52718f;
+  font-size:10px;
+  background:#eaf1f8;
+  padding:5px 9px;
+  border-radius:20px;
+}
+
+.asset-value {
+  font-size:29px;
+  color:#173d65;
+  font-weight:650;
+  margin:12px 0 16px;
+  letter-spacing:1px;
+  font-variant-numeric:tabular-nums;
+}
+
+.asset-bottom {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-top:1px solid #e9edf2;
+  padding-top:14px;
+}
+
+.asset-item + .asset-item {
+  border-left:1px solid #e9edf2;
+  padding-left:18px;
+}
+
+.asset-item span {
+  display:block;
+  font-size:11px;
+  color:#8795a4;
+}
+
+.asset-item strong {
+  display:block;
+  margin-top:7px;
+  font-size:17px;
+  color:#294b6c;
+}
+
+.eye {
+  border:0;
+  background:none;
+  color:#68809a;
+  font-size:17px;
+  margin-left:8px;
+}
+
+.section {
+  margin-top:20px;
+}
+
+.section-title {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:13px;
+}
+
+.section-title h3 {
+  margin:0;
+  font-size:15px;
+  color:#263c54;
+  font-weight:650;
+}
+
+.more {
+  font-size:11px;
+  color:#8292a3;
+  border:0;
+  background:none;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:17px 5px;
+  background:white;
+  padding:18px 7px;
+  border-radius:12px;
+  box-shadow:0 2px 10px rgba(0,30,70,.035);
+}
+
+.service {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  border:0;
+  background:none;
+  color:#344b64;
+  min-width:0;
+  padding:0;
+  gap:8px;
+}
+
+.service-icon {
+  width:46px;
+  height:46px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  background:#edf3f9;
+  color:#174b79;
+}
+
+.service-name {
+  font-size:11px;
+  white-space:nowrap;
+}
+
+.banner {
+  margin-top:16px;
+  border-radius:12px;
+  background:linear-gradient(110deg,#0b416e,#24658e);
+  padding:17px 16px;
+  color:white;
+  position:relative;
+  overflow:hidden;
+  min-height:104px;
+}
+
+.banner:after {
+  content:"";
+  position:absolute;
+  width:130px;
+  height:130px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:50%;
+  right:-20px;
+  top:-35px;
+  box-shadow:0 0 0 18px rgba(255,255,255,.035),
+             0 0 0 36px rgba(255,255,255,.025);
+}
+
+.banner-small {
+  font-size:10px;
+  opacity:.8;
+}
+
+.banner-title {
+  font-size:17px;
+  font-weight:650;
+  margin-top:8px;
+}
+
+.banner-desc {
+  font-size:10px;
+  opacity:.8;
+  margin-top:6px;
+}
+
+.banner-button {
+  position:absolute;
+  right:15px;
+  bottom:15px;
+  background:#e1d0a8;
+  color:#314a62;
+  border:0;
+  border-radius:20px;
+  padding:6px 12px;
+  font-size:10px;
+  z-index:1;
+}
+
+.news-card {
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 2px 10px rgba(0,30,70,.035);
+}
+
+.news-head {
+  padding:13px 14px;
+  border-bottom:1px solid #f0f2f4;
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  font-weight:600;
+}
+
+.news-list {
+  padding:0 14px;
+}
+
+.news-item {
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
+  padding:12px 0;
+  border-bottom:1px solid #f1f3f5;
+}
+
+.news-item:last-child {
+  border-bottom:0;
+}
+
+.news-tag {
+  background:#edf3f8;
+  color:#315d83;
+  border-radius:3px;
+  padding:3px 5px;
+  font-size:9px;
+  flex-shrink:0;
+}
+
+.news-content {
+  flex:1;
+  min-width:0;
+}
+
+.news-title {
+  font-size:11px;
+  line-height:1.6;
+}
+
+.news-date {
+  font-size:9px;
+  color:#a2acb7;
+  margin-top:5px;
+}
+
+.news-controls {
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.news-controls button {
+  background:none;
+  border:0;
+  color:#8595a5;
+  font-size:12px;
+}
+
+.quick-row {
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+}
+
+.quick-card {
+  flex:1;
+  background:white;
+  border-radius:10px;
+  padding:14px 10px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  border:0;
+  text-align:left;
+}
+
+.quick-card b {
+  font-size:12px;
+  color:#315575;
+}
+
+.quick-card span {
+  font-size:10px;
+  color:#8997a5;
+}
+
+.tabbar {
+  position:fixed;
+  z-index:20;
+  bottom:0;
+  left:0;
+  width:100%;
+  padding:9px 8px calc(9px + var(--safe-bottom));
+  background:rgba(255,255,255,.97);
+  border-top:1px solid #e8ebef;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  box-shadow:0 -3px 12px rgba(0,20,50,.04);
+}
+
+.tab {
+  background:none;
+  border:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  color:#929eaa;
+  font-size:10px;
+}
+
+.tab .tab-icon {
+  font-size:21px;
+}
+
+.tab.active {
+  color:#07518c;
+  font-weight:650;
+}
+
+.page {
+  display:none;
+  padding-top:16px;
+  animation:fade .2s ease;
+}
+
+.page.active {
+  display:block;
+}
+
+@keyframes fade {
+  from {opacity:.4;transform:translateY(4px)}
+  to {opacity:1;transform:translateY(0)}
+}
+
+.sub-card {
+  background:white;
+  padding:17px;
+  border-radius:12px;
+  margin-bottom:12px;
+}
+
+.sub-card h3 {
+  font-size:15px;
+  margin:0 0 12px;
+  color:#244666;
+}
+
+.sub-card p {
+  font-size:12px;
+  color:#7b8997;
+  line-height:1.8;
+  margin:0;
+}
+
+.row-item {
+  padding:14px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #f0f2f4;
+  font-size:12px;
+}
+
+.row-item:last-child {
+  border:0;
+}
+
+.row-item button {
+  border:0;
+  background:none;
+  color:#35688e;
+  font-size:11px;
+}
+
+.profile {
+  background:linear-gradient(120deg,#003366,#175781);
+  padding:22px 17px;
+  border-radius:12px;
+  color:white;
+  margin-bottom:15px;
+}
+
+.profile h3 {
+  margin:0;
+  font-size:18px;
+}
+
+.profile p {
+  font-size:11px;
+  opacity:.75;
+}
+
+.modal-mask {
+  position:fixed;
+  inset:0;
+  background:rgba(0,15,35,.52);
+  z-index:50;
+  display:none;
+  justify-content:center;
+  align-items:flex-end;
+}
+
+.modal-mask.show {
+  display:flex;
+}
+
+.modal {
+  width:100%;
+  max-width:550px;
+  background:#fff;
+  border-radius:18px 18px 0 0;
+  padding:20px 18px calc(22px + var(--safe-bottom));
+  max-height:80dvh;
+  overflow-y:auto;
+  animation:slide .22s ease;
+}
+
+@keyframes slide {
+  from {transform:translateY(100%)}
+  to {transform:translateY(0)}
+}
+
+.modal-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:16px;
+  font-weight:650;
+  color:#234766;
+  margin-bottom:16px;
+}
+
+.close {
+  border:0;
+  background:#f1f4f7;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  font-size:18px;
+  color:#65798c;
+}
+
+.modal-body {
+  font-size:13px;
+  line-height:1.9;
+  color:#617284;
+}
+
+.modal-body input,.modal-body select {
+  width:100%;
+  padding:12px;
+  border:1px solid #dfe5eb;
+  border-radius:8px;
+  margin:8px 0 13px;
+  background:white;
+  font-size:13px;
+  color:#30465c;
+}
+
+.primary-btn {
+  width:100%;
+  padding:13px;
+  background:#064779;
+  color:white;
+  border:0;
+  border-radius:8px;
+  margin-top:10px;
+}
+
+.notice {
+  padding:10px;
+  border-radius:7px;
+  background:#f2f6fa;
+  color:#647e96;
+  font-size:11px;
+  margin:12px 0;
+}
+
+.rate-row {
+  display:flex;
+  justify-content:space-between;
+  padding:12px 0;
+  border-bottom:1px solid #edf0f3;
+}
+
+.rate-row strong {
+  color:#28567c;
+}
+
+.rating {
+  color:#c08e36;
+  font-weight:650;
+}
+
+.disclaimer {
+  text-align:center;
+  color:#a1aab4;
+  font-size:9px;
+  line-height:1.8;
+  padding:22px 10px 15px;
+}
+
+@media(min-width:600px) {
+  body {
+    max-width:480px;
+    margin:auto;
+    box-shadow:0 0 30px rgba(0,0,0,.08);
+    min-height:100vh;
+  }
+  .tabbar {
+    max-width:480px;
+    left:50%;
+    transform:translateX(-50%);
+  }
+  .modal {
+    border-radius:18px;
+    margin-bottom:20px;
+  }
+  .modal-mask {
+    align-items:center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="demo-banner">
+  非官方交互演示原型 · 非真实银行客户端 · 所有数据均为模拟数据
+</div>
+
+<header class="header">
+  <div class="header-top">
+    <div class="brand">
+      <div class="brand-mark">EX</div>
+      <div>
+        <div class="brand-name">进出口金融服务</div>
+        <div class="brand-sub">IMPORT & EXPORT FINANCE</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="header-icon" onclick="openModal('消息通知','暂无新的模拟通知。')">
+        ♧<span class="red-dot"></span>
+      </button>
+      <button class="header-icon" onclick="openModal('在线客服','欢迎使用演示系统。此处不提供真实银行客服服务。')">♙</button>
+    </div>
+  </div>
+
+  <div class="greeting">您好，欢迎使用</div>
+  <div class="header-title">政策性金融服务平台</div>
+  <div class="header-desc">服务开放经济 · 支持国际贸易 · 助力企业发展</div>
+</header>
+
+<main>
+
+<!-- 首页 -->
+<div class="page active" id="page-home">
+
+  <section class="asset-card">
+    <div class="asset-top">
+      <span class="asset-label">模拟资产总览</span>
+      <span class="account-type">企业客户 · 演示账户</span>
+    </div>
+
+    <div class="asset-value" id="totalAsset">¥ 8,625,800.00</div>
+
+    <div class="asset-top">
+      <span class="asset-label">资产总额（模拟）</span>
+      <button class="eye" id="eyeBtn" onclick="togglePrivacy()">◉</button>
+    </div>
+
+    <div class="asset-bottom">
+      <div class="asset-item">
+        <span>可用额度</span>
+        <strong id="available">¥ 5,280,000</strong>
+      </div>
+      <div class="asset-item">
+        <span>融资额度</span>
+        <strong id="credit">¥ 12,000,000</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">
+      <h3>核心金融服务</h3>
+      <button class="more" onclick="switchTab('service')">全部服务 ›</button>
+    </div>
+
+    <div class="grid">
+      <button class="service" onclick="countryRisk()">
+        <span class="service-icon">🌐</span>
+        <span class="service-name">国别风险查询</span>
+      </button>
+
+      <button class="service" onclick="openBusiness('跨境结算')">
+        <span class="service-icon">⇄</span>
+        <span class="service-name">跨境结算</span>
+      </button>
+
+      <button class="service" onclick="openBusiness('信贷融资')">
+        <span class="service-icon">▤</span>
+        <span class="service-name">信贷融资</span>
+      </button>
+
+      <button class="service" onclick="exchange()">
+        <span class="service-icon">￥</span>
+        <span class="service-name">结售汇业务</span>
+      </button>
+
+      <button class="service" onclick="openBusiness('信用证服务')">
+        <span class="service-icon">▧</span>
+        <span class="service-name">信用证跟踪</span>
+      </button>
+
+      <button class="service" onclick="openBusiness('境外投资贷款')">
+        <span class="service-icon">⌂</span>
+        <span class="service-name">境外投资</span>
+      </button>
+
+      <button class="service" onclick="openBusiness('贸易融资')">
+        <span class="service-icon">▣</span>
+        <span class="service-name">贸易融资</span>
+      </button>
+
+      <button class="service" onclick="openBusiness('企业综合服务')">
+        <span class="service-icon">▦</span>
+        <span class="service-name">企业服务</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="banner">
+    <div class="banner-small">INTERNATIONAL COOPERATION</div>
+    <div class="banner-title">一带一路金融服务专区</div>
+    <div class="banner-desc">连接全球贸易 · 助力企业国际化发展</div>
+    <button class="banner-button" onclick="openBusiness('一带一路金融服务')">了解详情 ›</button>
+  </section>
+
+  <section class="section">
+    <div class="section-title">
+      <h3>政策性金融专区</h3>
+      <button class="more" onclick="switchTab('cross')">查看更多 ›</button>
+    </div>
+
+    <div class="quick-row">
+      <button class="quick-card" onclick="openBusiness('外贸企业专项贷款')">
+        <b>外贸企业专项贷款</b>
+        <span>政策性融资服务介绍 ›</span>
+      </button>
+      <button class="quick-card" onclick="openBusiness('中小外贸企业服务')">
+        <b>普惠金融服务</b>
+        <span>企业融资支持方案 ›</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="news-card">
+      <div class="news-head">
+        <span>行务公告 · 政策要闻</span>
+        <span style="font-size:10px;color:#8797a7">演示内容</span>
+      </div>
+
+      <div class="news-list" id="newsList">
+        <div class="news-item">
+          <span class="news-tag">政策</span>
+          <div class="news-content">
+            <div class="news-title">外贸企业政策性金融支持服务介绍</div>
+            <div class="news-date">2026-11-17 · 模拟公告</div>
+          </div>
+        </div>
+        <div class="news-item">
+          <span class="news-tag">国际</span>
+          <div class="news-content">
+            <div class="news-title">国际贸易与跨境金融服务专题</div>
+            <div class="news-date">2026-11-16 · 模拟公告</div>
+          </div>
+        </div>
+        <div class="news-item">
+          <span class="news-tag">服务</span>
+          <div class="news-content">
+            <div class="news-title">企业国际化经营综合金融服务指南</div>
+            <div class="news-date">2026-11-15 · 模拟公告</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- 金融服务 -->
+<div class="page" id="page-service">
+  <div class="section-title">
+    <h3>金融服务</h3>
+    <span style="font-size:10px;color:#8a99a8">业务功能导航</span>
+  </div>
+
+  <div class="sub-card">
+    <h3>贸易金融</h3>
+    <div class="row-item"><span>进出口贸易融资</span><button onclick="openBusiness('进出口贸易融资')">了解详情 ›</button></div>
+    <div class="row-item"><span>出口卖方信贷</span><button onclick="openBusiness('出口卖方信贷')">了解详情 ›</button></div>
+    <div class="row-item"><span>出口买方信贷</span><button onclick="openBusiness('出口买方信贷')">了解详情 ›</button></div>
+    <div class="row-item"><span>信用证业务</span><button onclick="openBusiness('信用证业务')">了解详情 ›</button></div>
+  </div>
+
+  <div class="sub-card">
+    <h3>国际业务</h3>
+    <div class="row-item"><span>跨境人民币结算</span><button onclick="openBusiness('跨境人民币结算')">了解详情 ›</button></div>
+    <div class="row-item"><span>国际结算服务</span><button onclick="openBusiness('国际结算服务')">了解详情 ›</button></div>
+    <div class="row-item"><span>国别风险信息</span><button onclick="countryRisk()">查询 ›</button></div>
+    <div class="row-item"><span>外汇业务介绍</span><button onclick="exchange()">查看 ›</button></div>
+  </div>
+
+  <div class="sub-card">
+    <h3>投资融资</h3>
+    <div class="row-item"><span>境外投资贷款</span><button onclick="openBusiness('境外投资贷款')">了解详情 ›</button></div>
+    <div class="row-item"><span>基础设施融资</span><button onclick="openBusiness('基础设施融资')">了解详情 ›</button></div>
+    <div class="row-item"><span>中小企业金融服务</span><button onclick="openBusiness('中小企业金融服务')">了解详情 ›</button></div>
+  </div>
+</div>
+
+<!-- 跨境专区 -->
+<div class="page" id="page-cross">
+  <div class="section-title">
+    <h3>跨境金融专区</h3>
+  </div>
+
+  <div class="banner" style="margin-top:0">
+    <div class="banner-small">GLOBAL TRADE FINANCE</div>
+    <div class="banner-title">全球贸易金融服务</div>
+    <div class="banner-desc">跨境结算 · 项目融资 · 国际合作</div>
+  </div>
+
+  <div class="sub-card" style="margin-top:15px">
+    <h3>国际合作与贸易</h3>
+    <div class="row-item"><span>🌏 国别风险评级查询</span><button onclick="countryRisk()">查询 ›</button></div>
+    <div class="row-item"><span>💱 跨境人民币业务</span><button onclick="openBusiness('跨境人民币业务')">查看 ›</button></div>
+    <div class="row-item"><span>📑 信用证业务跟踪</span><button onclick="openBusiness('信用证跟踪')">查看 ›</button></div>
+    <div class="row-item"><span>🏗 境外项目融资</span><button onclick="openBusiness('境外项目融资')">查看 ›</button></div>
+  </div>
+
+  <div class="sub-card">
+    <h3>国别风险信息（模拟）</h3>
+    <p>提供国家和地区风险分类展示、国际贸易环境信息及境外投资风险提示。评级仅用于界面演示，不代表任何官方风险评级。</p>
+    <button class="primary-btn" onclick="countryRisk()">进入风险查询</button>
+  </div>
+</div>
+
+<!-- 我的 -->
+<div class="page" id="page-mine">
+  <div class="profile">
+    <h3>企业客户 · 演示账户</h3>
+    <p>欢迎使用政策性金融服务演示平台</p>
+    <div style="font-size:11px;opacity:.75;margin-top:15px">账户状态：模拟体验</div>
+  </div>
+
+  <div class="sub-card">
+    <h3>账户信息</h3>
+    <div class="row-item"><span>客户类型</span><span>企业客户</span></div>
+    <div class="row-item"><span>账户状态</span><span style="color:#548a70">演示模式</span></div>
+    <div class="row-item"><span>资产总览</span><button onclick="switchTab('home')">查看 ›</button></div>
+  </div>
+
+  <div class="sub-card">
+    <h3>服务中心</h3>
+    <div class="row-item"><span>消息通知</span><button onclick="openModal('消息通知','目前没有新的模拟消息。')">查看 ›</button></div>
+    <div class="row-item"><span>客户服务</span><button onclick="openModal('客户服务','这是演示原型，不连接真实银行客服。')">查看 ›</button></div>
+    <div class="row-item"><span>帮助中心</span><button onclick="openModal('帮助中心','本平台仅演示政策性金融服务的业务分类与交互。')">查看 ›</button></div>
+    <div class="row-item"><span>关于平台</span><button onclick="openModal('关于平台','进出口金融服务移动端交互原型。非官方客户端。')">查看 ›</button></div>
+  </div>
+</div>
+
+<div class="disclaimer">
+  本页面为独立设计的非官方演示原型，与中国进出口银行无隶属、授权或合作关系。<br>
+  所有资产、额度、汇率、评级、公告及业务信息均为虚构演示数据。<br>
+  不提供真实开户、身份认证、资金交易或金融服务。
+</div>
+
+</main>
+
+<!-- 底部导航 -->
+<nav class="tabbar">
+  <button class="tab active" data-tab="home" onclick="switchTab('home')">
+    <span class="tab-icon">⌂</span><span>首页</span>
+  </button>
+  <button class="tab" data-tab="service" onclick="switchTab('service')">
+    <span class="tab-icon">▦</span><span>金融服务</span>
+  </button>
+  <button class="tab" data-tab="cross" onclick="switchTab('cross')">
+    <span class="tab-icon">◎</span><span>跨境专区</span>
+  </button>
+  <button class="tab" data-tab="mine" onclick="switchTab('mine')">
+    <span class="tab-icon">♙</span><span>我的</span>
+  </button>
+</nav>
+
+<!-- 弹窗 -->
+<div class="modal-mask" id="modalMask" onclick="maskClose(event)">
+  <div class="modal">
+    <div class="modal-head">
+      <span id="modalTitle">提示</span>
+      <button class="close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+let privacyHidden = false;
+let newsIndex = 0;
+
+const news = [
+  "外贸企业政策性金融支持服务介绍",
+  "国际贸易与跨境金融服务专题",
+  "企业国际化经营综合金融服务指南",
+  "境外投资项目风险管理知识介绍"
+];
+
+function switchTab(name) {
+  document.querySelectorAll(".page").forEach(p => {
+    p.classList.remove("active");
+  });
+
+  document.querySelectorAll(".tab").forEach(t => {
+    t.classList.remove("active");
+  });
+
+  const page = document.getElementById("page-" + name);
+  const tab = document.querySelector('[data-tab="' + name + '"]');
+
+  if (page) page.classList.add("active");
+  if (tab) tab.classList.add("active");
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function togglePrivacy() {
+  privacyHidden = !privacyHidden;
+
+  document.getElementById("totalAsset").textContent =
+    privacyHidden ? "¥ ******.**" : "¥ 8,625,800.00";
+
+  document.getElementById("available").textContent =
+    privacyHidden ? "¥ ******" : "¥ 5,280,000";
+
+  document.getElementById("credit").textContent =
+    privacyHidden ? "¥ ******" : "¥ 12,000,000";
+
+  document.getElementById("eyeBtn").textContent =
+    privacyHidden ? "◌" : "◉";
+}
+
+function openModal(title,content) {
+  document.getElementById("modalTitle").textContent = title;
+  document.getElementById("modalBody").innerHTML = content;
+  document.getElementById("modalMask").classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal() {
+  document.getElementById("modalMask").classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+function maskClose(event) {
+  if(event.target.id === "modalMask") closeModal();
+}
+
+function openBusiness(name) {
+  openModal(
+    name,
+    '<div class="notice">业务功能演示 · 非真实银行业务入口</div>' +
+    '<h3 style="color:#315a7c;font-size:15px">' + escapeHTML(name) + '</h3>' +
+    '<p>本模块用于展示政策性金融服务的业务结构和交互方式。</p>' +
+    '<p>相关服务可涉及业务介绍、办理条件、申请材料、业务流程及风险提示。</p>' +
+    '<p>实际业务办理应通过金融机构正式授权的渠道进行。</p>' +
+    '<button class="primary-btn" onclick="closeModal()">我知道了</button>'
+  );
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g,function(c){
+    return {
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+    }[c];
+  });
+}
+
+function countryRisk() {
+  openModal("国别风险查询（模拟）",
+    '<div class="notice">以下为虚构示例分类，并非真实国别评级。</div>' +
+    '<label>选择国家或地区</label>' +
+    '<select id="countrySelect">' +
+    '<option value="新加坡">新加坡</option>' +
+    '<option value="德国">德国</option>' +
+    '<option value="泰国">泰国</option>' +
+    '<option value="印度尼西亚">印度尼西亚</option>' +
+    '<option value="缅甸">缅甸</option>' +
+    '<option value="美国">美国</option>' +
+    '<option value="日本">日本</option>' +
+    '</select>' +
+    '<button class="primary-btn" onclick="showCountry()">查询模拟结果</button>' +
+    '<div id="countryResult"></div>'
+  );
+}
+
+function showCountry() {
+  const country = document.getElementById("countrySelect").value;
+
+  const ratings = {
+    "新加坡":"低风险示例",
+    "德国":"低风险示例",
+    "泰国":"中等风险示例",
+    "印度尼西亚":"中等风险示例",
+    "缅甸":"较高风险示例",
+    "美国":"低风险示例",
+    "日本":"低风险示例"
+  };
+
+  document.getElementById("countryResult").innerHTML =
+    '<div class="notice" style="margin-top:15px">' +
+    '查询地区：' + escapeHTML(country) +
+    '<br>模拟分类：<strong class="rating">' +
+    escapeHTML(ratings[country]) +
+    '</strong><br>提示：此结果仅用于交互展示，不代表真实风险评估。</div>';
+}
+
+function exchange() {
+  openModal("结售汇 · 汇率演示",
+    '<div class="notice">以下牌价为固定虚构数据，不是实时汇率，也不可用于交易。</div>' +
+    '<div class="rate-row"><span>美元 / 人民币 USD/CNY</span><strong>7.1200</strong></div>' +
+    '<div class="rate-row"><span>欧元 / 人民币 EUR/CNY</span><strong>7.8500</strong></div>' +
+    '<div class="rate-row"><span>日元 / 人民币 JPY/CNY</span><strong>0.0470</strong></div>' +
+    '<div class="rate-row"><span>英镑 / 人民币 GBP/CNY</span><strong>9.0800</strong></div>' +
+    '<button class="primary-btn" onclick="closeModal()">返回</button>'
+  );
+}
+
+function rotateNews() {
+  newsIndex = (newsIndex + 1) % news.length;
+  const first = document.querySelector(".news-item .news-title");
+  if(first) first.textContent = news[newsIndex];
+}
+
+setInterval(rotateNews,4000);
+
+document.addEventListener("keydown",function(e){
+  if(e.key === "Escape") closeModal();
+});
+
+</script>
+
+</body>
+</html>
