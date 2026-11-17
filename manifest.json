@@ -3,7 +3,7 @@
   "id": "./",
   "name": "中国进出口银行",
   "short_name": "进出口银行",
-  "description": "中国进出口银行移动金融服务演示原型",
+  "description": "进出口金融服务移动端演示原型",
   "lang": "zh-CN",
   "start_url": "./index.html",
   "scope": "./",
